@@ -1,0 +1,275 @@
+{
+  "pairingsCompleted": 5,
+  "totalPairings": 351,
+  "pairingResults": {
+    "1_vs_2": {
+      "status": "completed",
+      "seriesScore": [
+        0,
+        2
+      ],
+      "winner": "v2",
+      "games": [
+        {
+          "gameNum": 1,
+          "winner": "v2",
+          "replayUrl": "https://bot.generals.io/replays/U8858c4BW"
+        },
+        {
+          "gameNum": 2,
+          "winner": "v2",
+          "replayUrl": "https://bot.generals.io/replays/-nD6KfmWm"
+        }
+      ]
+    },
+    "1_vs_3": {
+      "status": "completed",
+      "seriesScore": [
+        0,
+        2
+      ],
+      "winner": "v3",
+      "games": [
+        {
+          "gameNum": 1,
+          "winner": "v3",
+          "replayUrl": "https://bot.generals.io/replays/WaMDlYHQf"
+        },
+        {
+          "gameNum": 2,
+          "winner": "v3",
+          "replayUrl": "https://bot.generals.io/replays/3qiAtu853"
+        }
+      ]
+    },
+    "1_vs_4": {
+      "status": "completed",
+      "seriesScore": [
+        0,
+        2
+      ],
+      "winner": "v4",
+      "games": [
+        {
+          "gameNum": 1,
+          "winner": "v4",
+          "replayUrl": "https://bot.generals.io/replays/oPM1at0Ih"
+        },
+        {
+          "gameNum": 2,
+          "winner": "v4",
+          "replayUrl": "https://bot.generals.io/replays/Zym4M7mF6"
+        }
+      ]
+    },
+    "1_vs_5": {
+      "status": "completed",
+      "seriesScore": [
+        2,
+        1
+      ],
+      "winner": "v1",
+      "games": [
+        {
+          "gameNum": 1,
+          "winner": "v1",
+          "replayUrl": "https://bot.generals.io/replays/iLCQPVXDJ"
+        },
+        {
+          "gameNum": 2,
+          "winner": "v5",
+          "replayUrl": "https://bot.generals.io/replays/kOtaOc-Xl"
+        },
+        {
+          "gameNum": 3,
+          "winner": "v1",
+          "replayUrl": "https://bot.generals.io/replays/6cgVWRDDr"
+        }
+      ]
+    },
+    "1_vs_6": {
+      "status": "completed",
+      "seriesScore": [
+        0,
+        2
+      ],
+      "winner": "v6",
+      "games": [
+        {
+          "gameNum": 1,
+          "winner": "v6",
+          "replayUrl": "https://bot.generals.io/replays/9KDMjS80q"
+        },
+        {
+          "gameNum": 2,
+          "winner": "v6",
+          "replayUrl": "https://bot.generals.io/replays/D7Cxop6Vm"
+        }
+      ]
+    }
+  },
+  "botStats": {
+    "v1": {
+      "seriesWins": 1,
+      "seriesLosses": 3,
+      "gameWins": 2,
+      "gameLosses": 7
+    },
+    "v2": {
+      "seriesWins": 1,
+      "seriesLosses": 0,
+      "gameWins": 2,
+      "gameLosses": 0
+    },
+    "v3": {
+      "seriesWins": 1,
+      "seriesLosses": 0,
+      "gameWins": 2,
+      "gameLosses": 0
+    },
+    "v4": {
+      "seriesWins": 1,
+      "seriesLosses": 0,
+      "gameWins": 2,
+      "gameLosses": 0
+    },
+    "v5": {
+      "seriesWins": 0,
+      "seriesLosses": 1,
+      "gameWins": 1,
+      "gameLosses": 2
+    },
+    "v6": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v7": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v8": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v9": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v10": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v11": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v12": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v13": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v14": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v15": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v16": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v17": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v18": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v19": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v20": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v21": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v22": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v23": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v24": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v25": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v26": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    },
+    "v27": {
+      "seriesWins": 0,
+      "seriesLosses": 0,
+      "gameWins": 0,
+      "gameLosses": 0
+    }
+  }
+}

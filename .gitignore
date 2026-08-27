@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Runtime logs & temporary state
+*.log
+match_history.log
+bot.log
+headless_bot.log
+do_surrender
+
+# Cache & Scratch
+scratch/
+.DS_Store
+Thumbs.db
+
+# Tool-specific & IDE
+.claude/settings.local.json
+.vscode/
+.idea/
+
+# Large Training Datasets & Backups (Replay Imitation Learning)
+replays/imitation/dataset*.jsonl*
+replays/imitation/heldout*.jsonl*
+*.bak
+
+# Environment variables
+.env
+.env.local

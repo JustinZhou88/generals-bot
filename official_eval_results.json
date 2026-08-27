@@ -1,0 +1,242 @@
+{
+  "base_v27_vs_v9": {
+    "a": "./strategy_v27.js",
+    "b": "./strategy_v9.js",
+    "games": [
+      {
+        "idx": 0,
+        "swap": false,
+        "winner": "a",
+        "reason": "ok",
+        "replayUrl": "https://bot.generals.io/replays/J4AjjuIMx",
+        "statsA": {
+          "turn": 300,
+          "army": 491,
+          "tiles": 123
+        },
+        "statsB": {
+          "turn": 300,
+          "army": 434,
+          "tiles": 111
+        },
+        "secs": 191
+      }
+    ],
+    "winsA": 1,
+    "winsB": 0
+  },
+  "verify_v19_vs_v27": {
+    "a": "./strategy_v19.js",
+    "b": "./strategy_v27.js",
+    "games": [
+      {
+        "idx": 0,
+        "swap": false,
+        "winner": "a",
+        "reason": "ok",
+        "replayUrl": "https://bot.generals.io/replays/g3R9_zn2v",
+        "statsA": {
+          "turn": 600,
+          "army": 914,
+          "tiles": 128
+        },
+        "statsB": {
+          "turn": 600,
+          "army": 746,
+          "tiles": 79
+        },
+        "secs": 312
+      },
+      {
+        "idx": 1,
+        "swap": true,
+        "winner": "a",
+        "reason": "ok",
+        "replayUrl": "https://bot.generals.io/replays/t_0Hs-cpq",
+        "statsA": {
+          "turn": 400,
+          "army": 477,
+          "tiles": 118
+        },
+        "statsB": {
+          "turn": 400,
+          "army": 569,
+          "tiles": 127
+        },
+        "secs": 254
+      },
+      {
+        "idx": 2,
+        "swap": false,
+        "winner": "b",
+        "reason": "ok",
+        "replayUrl": "https://bot.generals.io/replays/QqTlLhM__",
+        "statsA": {
+          "turn": 300,
+          "army": 425,
+          "tiles": 130
+        },
+        "statsB": {
+          "turn": 300,
+          "army": 397,
+          "tiles": 100
+        },
+        "secs": 186
+      },
+      {
+        "idx": 3,
+        "swap": true,
+        "winner": "a",
+        "reason": "ok",
+        "replayUrl": "https://bot.generals.io/replays/_S_MvNyCy",
+        "statsA": {
+          "turn": 100,
+          "army": 119,
+          "tiles": 50
+        },
+        "statsB": {
+          "turn": 100,
+          "army": 126,
+          "tiles": 53
+        },
+        "secs": 83
+      },
+      {
+        "idx": 4,
+        "swap": false,
+        "winner": "a",
+        "reason": "ok",
+        "replayUrl": "https://bot.generals.io/replays/Sn3SgYwoI",
+        "statsA": {
+          "turn": 300,
+          "army": 297,
+          "tiles": 86
+        },
+        "statsB": {
+          "turn": 300,
+          "army": 301,
+          "tiles": 88
+        },
+        "secs": 182
+      },
+      {
+        "idx": 5,
+        "swap": true,
+        "winner": "a",
+        "reason": "ok",
+        "replayUrl": "https://bot.generals.io/replays/K6rLO7UuD",
+        "statsA": {
+          "turn": 1000,
+          "army": 2231,
+          "tiles": 187
+        },
+        "statsB": {
+          "turn": 1000,
+          "army": 2433,
+          "tiles": 100
+        },
+        "secs": 516
+      }
+    ],
+    "winsA": 5,
+    "winsB": 1
+  },
+  "official_v28_vs_v27": {
+    "a": "./strategy_v28.js",
+    "b": "./strategy_v27.js",
+    "games": [
+      {
+        "idx": 0,
+        "swap": false,
+        "winner": "a",
+        "reason": "ok",
+        "replayUrl": "https://bot.generals.io/replays/snmSU6Hm-",
+        "statsA": {
+          "turn": 500,
+          "army": 645,
+          "tiles": 120
+        },
+        "statsB": {
+          "turn": 500,
+          "army": 483,
+          "tiles": 91
+        },
+        "secs": 293
+      },
+      {
+        "idx": 1,
+        "swap": true,
+        "winner": "a",
+        "reason": "ok",
+        "replayUrl": "https://bot.generals.io/replays/WJDx3cUhx",
+        "statsA": {
+          "turn": 400,
+          "army": 512,
+          "tiles": 94
+        },
+        "statsB": {
+          "turn": 400,
+          "army": 444,
+          "tiles": 103
+        },
+        "secs": 228
+      },
+      {
+        "idx": 2,
+        "swap": false,
+        "winner": "a",
+        "reason": "ok",
+        "replayUrl": "https://bot.generals.io/replays/47fPC5Lfk",
+        "statsA": {
+          "turn": 200,
+          "army": 186,
+          "tiles": 61
+        },
+        "statsB": {
+          "turn": 200,
+          "army": 181,
+          "tiles": 62
+        },
+        "secs": 120
+      },
+      {
+        "idx": 3,
+        "swap": true,
+        "winner": "a",
+        "reason": "ok",
+        "replayUrl": "https://bot.generals.io/replays/RzL-08xIj",
+        "statsA": {
+          "turn": 600,
+          "army": 1217,
+          "tiles": 159
+        },
+        "statsB": {
+          "turn": 600,
+          "army": 508,
+          "tiles": 58
+        },
+        "secs": 324
+      },
+      {
+        "idx": 4,
+        "swap": false,
+        "winner": "a",
+        "reason": "ok",
+        "replayUrl": "https://bot.generals.io/replays/S2MieuTF4",
+        "statsA": {
+          "turn": 1000,
+          "army": 1583,
+          "tiles": 179
+        },
+        "statsB": {
+          "turn": 1000,
+          "army": 2043,
+          "tiles": 70
+        },
+        "secs": 509
+      }
+    ],
+    "winsA": 5,
+    "winsB": 0
+  }
+}

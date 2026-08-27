@@ -1,0 +1,5 @@
+[
+  { "a": "./strategy_v27.js", "b": "./strategy_v9.js",  "games": 4, "tag": "base_v27_vs_v9" },
+  { "a": "./strategy_v27.js", "b": "./strategy_v25.js", "games": 4, "tag": "base_v27_vs_v25" },
+  { "a": "./strategy_v27.js", "b": "./strategy_v19.js", "games": 4, "tag": "base_v27_vs_v19" }
+]

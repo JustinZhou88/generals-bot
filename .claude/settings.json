@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node test/sim.js *)",
+      "Bash(node opening_test.js *)",
+      "Bash(node scorecard.js *)",
+      "Bash(node arena.js *)",
+      "Bash(node defense_test.js *)",
+      "Bash(node discover_test.js *)",
+      "Bash(node eff_test.js *)",
+      "Bash(node reach_test.js *)",
+      "Bash(node sniper_test.js *)",
+      "Bash(node metric_stepeff.js *)",
+      "Bash(node metric_aggression.js *)",
+      "Bash(node metric_city_econ.js *)",
+      "Bash(node metric_territory.js *)",
+      "Bash(node metric_mainforce.js *)",
+      "Bash(node metric_botcheck.js *)",
+      "Bash(node metric_concentration.js *)",
+      "Bash(node replays/imitation/smoke.js *)",
+      "Bash(node replays/imitation/eval.js *)",
+      "Bash(node replays/imitation/parity2.js *)",
+      "Bash(node tools/run.js *)"
+    ]
+  }
+}
