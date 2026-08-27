@@ -7,6 +7,9 @@ match_history.log
 bot.log
 headless_bot.log
 do_surrender
+.bot.pid
+live_status.txt
+live_status.json
 
 # Cache & Scratch
 scratch/

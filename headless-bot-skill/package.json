@@ -1,0 +1,20 @@
+{
+  "name": "generals-io-bot",
+  "version": "1.0.0",
+  "description": "High-performance generals.io bot (expansion / gather / city / attack / defense strategies)",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js",
+    "private": "node index.js --mode private --game my_test_room",
+    "1v1": "node index.js --mode 1v1",
+    "ffa": "node index.js --mode ffa"
+  },
+  "dependencies": {
+    "lz-string": "^1.5.0",
+    "playwright-core": "^1.62.0",
+    "puppeteer-core": "^25.4.0",
+    "socket.io-client": "^4.8.3"
+  },
+  "license": "MIT"
+}

@@ -67,6 +67,13 @@
 │   ├── strategy.js              # 核心策略分发入口 (当前激活: v55 策略)
 │   ├── strategy_v1.js ~ v57.js  # 历代策略演进全纪录
 │   └── imitation*.js            # 模仿学习推理策略模块
+├── headless-bot-skill/          # 生产级实战无人值守挂机与直播 Skill 套件
+│   ├── SKILL.md                 # Agent 技能规范文件 (可直接作为 AI Skill 调度)
+│   ├── headless_bot.js          # 网页 socket 深度 Hook、自动排位与状态派发
+│   ├── live_viewer.js           # 浏览器 SSE 实时对局观战直播服务器 (Web 面板)
+│   ├── keep_alive.sh            # 进程守护脚本 (崩溃自动拉起)
+│   ├── restart_bot.sh           # 安全优雅重启 (对局结束后平滑退出重启)
+│   └── replay_links/            # 对局回放历史索引表与 macOS .webloc 链接
 ├── replays/
 │   ├── Game.js, Map.js ...      # 官方回放解压与模拟重放引擎 (.gior 支持)
 │   ├── corpus/                  # 真实高手对战语料库
@@ -124,6 +131,21 @@ GENERALS_USER_ID="your_secret_token" GENERALS_USERNAME="[Bot] MyBot" \
   GENERALS_USER_ID="your_user_id" node headless_bot.js
   ```
   该模式会自动打开无头 Chrome 排位，并在当前目录生成 `current_status.png` 实时截图与 `match_history.log`。
+
+- **生产级无人值守巡航 + 实时浏览器观战直播 (推荐)：**
+  进入 `headless-bot-skill/` 目录，配套 SSE 实时战况看板与自动进程守护：
+  ```bash
+  cd headless-bot-skill
+
+  # 1. 启动 Web 实时观战直播面板 (浏览器访问 http://localhost:3000)
+  node live_viewer.js &
+
+  # 2. 启动具备自愈守护的排位进程
+  ./keep_alive.sh
+
+  # 3. 如需平滑重启 (等当前局打完再安全重启，不弃权判负)
+  ./restart_bot.sh
+  ```
 
 ### 5. 评测与审计
 
