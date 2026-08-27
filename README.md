@@ -1,169 +1,169 @@
-# generals-io-bot (高性能竞技级 Generals.io AI 机器人)
+# generals-io-bot (High-Performance Competitive Generals.io AI Bot)
 
-面向 [generals.io](https://generals.io) 的全自动、高性能策略对战机器人与研究框架。  
-本项目经历了 **57+ 个版本的代际演进与实验调优**，融合了：
-- **分层规则引擎与保护闩机制**（防守、斩首、早期节拍抢地、防撞塔保护、聚兵树）
-- **动态自适应侦察与贝叶斯推断**（针对 Bot 与真人玩家切换侦察策略，敌将后验信念建模）
-- **高手语料模仿学习混合体**（精选高分专家子集训练轻量 MLP 动作排序器，指引发育行军）
-- **全自动天梯挂机与监控系统**（基于 Playwright Headless 驱动真实浏览器自动排位与状态快照）
-- **逐帧一致性模拟器与多维审计评测工具链**（离线对齐官方引擎、多维度对局缺陷审计、分星级置信胜率评估）
-
----
-
-## 🌟 核心特性与架构
-
-### 1. 分层决策策略 (Hierarchical Strategy Engine)
-每半回合（约 0.5s）按严格优先级执行单步决策：
-1. **生死防守反打 (Defend & Counter)**：实时监测将军威胁半径与敌军主力动向，必要时集结重兵沿最小代价路径回防。
-2. **绝杀斩首 (Sniper / Decapitation)**：一旦定位敌将，精确测算攻坚所需兵力（`驻军 + 距离 + 容错余量`），兵力充足立即总攻突刺；不足则沿出击轴线预先聚兵。
-3. **开局扩张与黄金节拍 (Opening Expansion)**：前 50 个半回合全力抢占外围空地（每 25 回合经济产兵周期对齐）；后续优先利用高兵地块形成“蛇形连吃”。
-4. **守得住才打的攻城机制 (City Siege & Safety Clamp)**：只有在不弱于全局最强对手且判定该城“离我方将军更近、守得住”时才开火。内置 `CITY_NOBOUNCE` 机制，杜绝兵力不足时穿城行军撞塔送兵。
-5. **边际正收益蚕食 (Nibble)**：前线局部兵力占优时吃掉能稳赢的相邻敌格，贪心最大净增收益。
-6. **低成本树状聚兵 (Gathering Tree)**：以后方散兵为叶子、前线推进点为根，沿己方低代价地块反向收编兵力推向前线。
-
-### 2. 动态侦察与敌将推断 (Belief & Adaptive Scouting)
-- **对手类型自适应 (v51 突破)**：
-  - **面对 [Bot] 机器人对手**：启用侦察投影封顶（`projCap`），沿敌方领地边缘寻找前沿，避免盲目穿透。
-  - **面对真人玩家对手**：真人通常偏好深潜龟缩，自动切换为“瞄准先验深度定向扫描”（对齐真实语料双将平均距离分布），突破真人反侦察盲区。
-- **空间信念网络 (`belief.js`)**：结合迷雾地形、已发现城市与障碍、敌兵出现首个坐标，实时更新敌将可能坐标的概率分布。
-
-### 3. 模仿学习混合体 (Imitation Learning Hybrid)
-- **专家数据精炼**：实验证明盲目扩充语料会导致不同风格相互稀释反而降低实战胜率；本项目从数百局高分语料库中筛选出**精英玩家（Elite Subsets）**子集重训。
-- **特征工程与 MLP 排序器**：提取 24 维棋盘与移动特征（见 `replays/imitation/FEATURES.md`），训练紧凑型模型（`model*.json` / `commit_model.json`）。
-- **规则 + 学习混合架构**：关键生死点（斩首、防守、攻城、开局节奏）由硬性规则掌控，发育行军与日常调度交由模仿模型排序打分，实现高灵巧性与高下限的统一。
-
-### 4. 自动化天梯巡航 (Playwright Headless Bot)
-- 脚本 `headless_bot.js` 通过 Playwright-core 驱动无头 Chrome，自动连接官方对局，支持：
-  - 自动进入 1v1 / FFA 排位队列；
-  - 对局事件与胜负结果自动落盘（`match_history.log`）；
-  - 实时战局截屏渲染（`current_status.png`），便于随时远程监控对战状态。
-
-### 5. 逐帧一致性模拟器与审计套件 (Audit & Benchmark Suite)
-- **逐帧一致性离线验证 (`conformance.js`)**：与官方服务器真实对局数据对比，5100+ 帧逐格移动与状态完全一致。
-- **真实随机地图生成器 (`mapgen.js`)**：参数严格校准于 1804 局真实官方对战语料分布。
-- **多维度缺陷审计工具链**：
-  - 首府攻防与失守审计 (`cap_audit.js`)
-  - 城市占领与聚兵审计 (`city_audit.js`, `city_gather_audit.js`, `city_gate_audit.js`)
-  - 闲置行军与漏算审计 (`idle_audit.js`, `leak_audit.js`, `oscil_audit.js`)
-  - 断子滞留审计 (`stranded_audit.js`)
-  - 突袭与闪击测试 (`strike_audit.js`, `sniper_test.js`)
-- **严谨置信区间评估 (`ver_report.js`, `arena.js`)**：
-  - 按对手天梯星级（全部、≥20★、≥25★、≥30★）分段输出真实胜率，消除对手池漂移导致的虚假胜率陷阱；
-  - 采用 Wilson 95% 置信区间衡量代际强度提升。
+An automated, high-performance strategy bot and research framework for [generals.io](https://generals.io).  
+This project has undergone **57+ generations of iterative evolution and experimental tuning**, integrating:
+- **Hierarchical Rule Engine & Safety Clamps** (Defense, decapitation sniper, opening expansion tempo, anti-bounce city siege protection, gathering trees)
+- **Adaptive Dynamic Scouting & Bayesian Inference** (Context-aware scouting switching between bots and human opponents; probabilistic enemy general belief modeling)
+- **Imitation Learning Hybrid** (Compact MLP action ranking model trained on elite player subsets to guide mid-game expansion marching)
+- **Automated Headless Ladder Cruise System** (Playwright-driven headless Chrome for automated queueing, self-healing reconnection, and live status snapshotting)
+- **Frame-Accurate Conformance Simulator & Multi-Dimensional Audit Benchmark Suite** (Offline alignment with official game engine, multi-metric defect audits, and star-bracketed confidence interval win rate evaluations)
 
 ---
 
-## 📁 目录结构
+## 🌟 Core Features & Architecture
+
+### 1. Hierarchical Strategy Engine
+Executes single-step decisions every half-turn (~0.5s) based on strict priorities:
+1. **Defend & Counter**: Monitors threat radius around the general and enemy main forces; rallies defenses along the lowest-cost paths when under siege.
+2. **Sniper / Decapitation**: Calculates required assault forces (`garrison + distance + safety margin`) upon spotting the enemy general; executes an all-in strike when sufficient, or gathers forces along the attack corridor beforehand.
+3. **Opening Expansion Tempo**: Prioritizes claiming surrounding neutral land in the first 50 half-turns (aligned with 25-turn economic production cycles); subsequently prioritizes highest-troop tiles to form continuous snake-like expansion lines.
+4. **City Siege & Safety Clamp**: Attacks cities only when military power matches or exceeds the strongest opponent and the city is closer to the friendly general; features `CITY_NOBOUNCE` to prevent suicide runs into neutral towers when pathing troops are insufficient.
+5. **Marginal Gain Nibble**: Frontline troops take adjacent enemy tiles whenever victory is guaranteed and net troop efficiency is maximized.
+6. **Gathering Tree**: Treats dispersed inland troops as leaves and frontline spearheads as roots, consolidating scattered armies along low-cost friendly terrain.
+
+### 2. Adaptive Scouting & Enemy General Belief Modeling
+- **Opponent Type Adaptation (v51 Milestone)**:
+  - **Against [Bot] Opponents**: Uses scouting projection caps (`projCap`), scanning along the perimeter of enemy territory to prevent over-extension.
+  - **Against Human Opponents**: Switches to prior depth directional scanning (aligned with empirical dual-general distance distributions), breaking through human turtling patterns.
+- **Spatial Belief Network (`belief.js`)**: Dynamically updates the posterior spatial probability distribution of the enemy general based on fog-of-war terrain, discovered cities, obstacles, and initial contact coordinates.
+
+### 3. Imitation Learning Hybrid
+- **Elite Data Distillation**: Experiments demonstrated that indiscriminate corpus expansion diluted distinct playstyles; the model is trained exclusively on **elite human player subsets** filtered from hundreds of replays.
+- **Feature Engineering & MLP Ranker**: Extracts 24-dimensional spatial and movement features (see `replays/imitation/FEATURES.md`) to train compact scoring models (`model*.json` / `commit_model.json`).
+- **Hybrid Rule + Learning Structure**: Hard survival constraints (decapitation, defense, sieges, opening rhythm) are governed by strict heuristic rules, while routine developmental marching is ranked by the imitation model.
+
+### 4. Automated Headless Ladder Runner (Playwright)
+- Driven by Playwright-core with Headless Chrome, `headless_bot.js` provides:
+  - Automated 1v1 and FFA ranked matchmaking queueing;
+  - Automated match event logging and result persistence (`match_history.log`);
+  - Real-time screenshot rendering (`current_status.png`) for remote monitoring.
+
+### 5. Frame-Accurate Simulator & Audit Suite
+- **Frame-by-Frame Conformance Testing (`conformance.js`)**: Validates offline simulation against official server packet replays (5100+ frames verified bit-for-bit identical).
+- **Realistic Map Generator (`mapgen.js`)**: Parameters strictly calibrated against the empirical distribution of 1804 official matches.
+- **Specialized Defect Audits**:
+  - Capital defense and fall audits (`cap_audit.js`)
+  - City siege and gathering efficiency audits (`city_audit.js`, `city_gather_audit.js`, `city_gate_audit.js`)
+  - Idle turn and leak audits (`idle_audit.js`, `leak_audit.js`, `oscil_audit.js`)
+  - Stranded troop audits (`stranded_audit.js`)
+  - Strike and sniper tests (`strike_audit.js`, `sniper_test.js`)
+- **Rigorous Confidence Interval Evaluation (`ver_report.js`, `arena.js`)**:
+  - Partitions win rates across opponent star tiers (All, ≥20★, ≥25★, ≥30★) to eliminate rating pool drift;
+  - Computes Wilson 95% confidence intervals for generational improvements.
+
+---
+
+## 📁 Repository Structure
 
 ```text
-├── index.js                     # 官方 Bot 协议客户端入口 (CLI 参数、房间配置)
-├── headless_bot.js              # Playwright 无头浏览器全自动天梯挂机脚本
+├── index.js                     # Official Bot protocol client entrypoint (CLI flags, room config)
+├── headless_bot.js              # Playwright headless browser automated ladder runner
 ├── src/
-│   ├── client.js                # Socket.io 协议通信层与断线重连
-│   ├── gamestate.js             # 棋盘状态管理、迷雾记忆、map_diff 解包
-│   ├── pathfinding.js           # 二叉堆带权 Dijkstra 与多源 BFS 寻路
-│   ├── belief.js                # 敌方将军位置贝叶斯后验概率推断
-│   ├── commit.js                # 行动承诺与连续推进控制器
-│   ├── strategy.js              # 核心策略分发入口 (当前激活: v55 策略)
-│   ├── strategy_v1.js ~ v57.js  # 历代策略演进全纪录
-│   └── imitation*.js            # 模仿学习推理策略模块
-├── headless-bot-skill/          # 生产级实战无人值守挂机与直播 Skill 套件
-│   ├── SKILL.md                 # Agent 技能规范文件 (可直接作为 AI Skill 调度)
-│   ├── headless_bot.js          # 网页 socket 深度 Hook、自动排位与状态派发
-│   ├── live_viewer.js           # 浏览器 SSE 实时对局观战直播服务器 (Web 面板)
-│   ├── keep_alive.sh            # 进程守护脚本 (崩溃自动拉起)
-│   ├── restart_bot.sh           # 安全优雅重启 (对局结束后平滑退出重启)
-│   └── replay_links/            # 对局回放历史索引表与 macOS .webloc 链接
+│   ├── client.js                # Socket.io protocol communication & reconnection layer
+│   ├── gamestate.js             # Board state management, fog-of-war memory, map_diff unpacking
+│   ├── pathfinding.js           # Binary-heap weighted Dijkstra & multi-source BFS pathfinding
+│   ├── belief.js                # Bayesian posterior inference for enemy general localization
+│   ├── commit.js                # Action commitment and continuous advance controller
+│   ├── strategy.js              # Core strategy dispatch entrypoint (Active: v55)
+│   ├── strategy_v1.js ~ v57.js  # Full historical record of 57 generational strategy iterations
+│   └── imitation*.js            # Imitation learning inference modules
+├── headless-bot-skill/          # Production-grade headless ladder & live streaming suite
+│   ├── SKILL.md                 # Agent skill specification (callable as AI Skill)
+│   ├── headless_bot.js          # In-browser socket hook, auto-queue, and state dispatcher
+│   ├── live_viewer.js           # SSE real-time web spectator dashboard
+│   ├── keep_alive.sh            # Process watchdog daemon (auto-restart on crash)
+│   ├── restart_bot.sh           # Graceful restart (waits for game completion to avoid forfeit)
+│   └── replay_links/            # Match replay archive index and macOS .webloc shortcuts
 ├── replays/
-│   ├── Game.js, Map.js ...      # 官方回放解压与模拟重放引擎 (.gior 支持)
-│   ├── corpus/                  # 真实高手对战语料库
-│   ├── pro/                     # 职业级高水平对局切片
-│   ├── imitation/               # 模仿学习特征提取器、训练器与模型文件
-│   └── scorecard.js             # 多维度战绩指标评分卡
+│   ├── Game.js, Map.js ...      # Official replay unpacking & replay simulation engine (.gior)
+│   ├── corpus/                  # Master human battle replay corpus
+│   ├── pro/                     # Pro-tier match slices
+│   ├── imitation/               # Feature extractors, trainers, and compact model weights
+│   └── scorecard.js             # Multi-dimensional performance scorecard
 ├── test/
-│   └── sim.js                   # 离线 5x5 冒烟测试套件
-├── arena.js                     # 策略对战离线擂台
-├── conformance.js               # 与官方协议逐帧一致性校验
-├── ver_report.js                # 分星级实战成绩报表工具
-├── cap_audit.js / city_audit.js # 专项缺陷审计脚本集
-└── current_status.png           # 自动化实战实时截图
+│   └── sim.js                   # Offline 5x5 smoke test suite
+├── arena.js                     # Offline bot-vs-bot arena
+├── conformance.js               # Frame-accurate protocol conformance verifier
+├── ver_report.js                # Star-bracketed battle report generator
+├── cap_audit.js / city_audit.js # Defect audit script suite
+└── current_status.png           # Automated ladder real-time screenshot
 ```
 
 ---
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 1. 环境准备
-需要 Node.js (>= 18.0.0)。克隆仓库后安装依赖：
+### 1. Environment Setup
+Requires Node.js (>= 18.0.0). Install dependencies after cloning:
 
 ```bash
 npm install
 ```
 
-### 2. 离线冒烟测试
-无需联网，快速验证补丁算法、寻路与策略完整性：
+### 2. Offline Smoke Test
+Run offline sanity checks for patch algorithm, pathfinding, and strategy logic without network:
 
 ```bash
 node test/sim.js
 ```
 
-### 3. 私人房间测试 (推荐首选)
-在自定义房间与机器人或朋友对局调试：
+### 3. Private Custom Room Test (Recommended)
+Test and debug against bots or friends in a custom room:
 
 ```bash
-# 设置您的密钥与机器人名称 (注: 官方要求 Bot 名称必须以 "[Bot] " 开头)
+# Set credentials and bot username (Official rule: bot name must start with "[Bot] ")
 GENERALS_USER_ID="your_secret_token" GENERALS_USERNAME="[Bot] MyBot" \
   node index.js --mode private --game test_room_123
 ```
-控制台会打印对局链接，直接在浏览器中打开链接即可加入房间对战。
+Open the printed room link in your browser to join and battle.
 
-### 4. 天梯与实战模式
-- **直接连线排位 (需 Bot 账号已通过官方审核)：**
+### 4. Ranked Ladder & Production Modes
+- **Direct Bot Protocol Connection (Requires approved bot account):**
   ```bash
-  # 1v1 天梯
+  # 1v1 Ranked Ladder
   node index.js --mode 1v1
 
-  # FFA 混战
+  # FFA Free-For-All
   node index.js --mode ffa
   ```
-- **自动化无头浏览器巡航模式 (Playwright)：**
+- **Automated Headless Browser Cruise (Playwright):**
   ```bash
   GENERALS_USER_ID="your_user_id" node headless_bot.js
   ```
-  该模式会自动打开无头 Chrome 排位，并在当前目录生成 `current_status.png` 实时截图与 `match_history.log`。
+  Launches headless Chrome to queue automatically, outputting `current_status.png` and `match_history.log`.
 
-- **生产级无人值守巡航 + 实时浏览器观战直播 (推荐)：**
-  进入 `headless-bot-skill/` 目录，配套 SSE 实时战况看板与自动进程守护：
+- **Production Headless Cruise + Live Web Spectator Dashboard (Recommended):**
+  Navigate to `headless-bot-skill/` with SSE live dashboard and watchdog daemon:
   ```bash
   cd headless-bot-skill
 
-  # 1. 启动 Web 实时观战直播面板 (浏览器访问 http://localhost:3000)
+  # 1. Start the real-time web spectator dashboard (Open http://localhost:3000 in browser)
   node live_viewer.js &
 
-  # 2. 启动具备自愈守护的排位进程
+  # 2. Start the self-healing automated ladder process
   ./keep_alive.sh
 
-  # 3. 如需平滑重启 (等当前局打完再安全重启，不弃权判负)
+  # 3. Graceful restart (waits for ongoing match to finish, avoiding forfeits)
   ./restart_bot.sh
   ```
 
-### 5. 评测与审计
+### 5. Benchmarks & Audits
 
-- **版本间离线对位对战：**
+- **Generational Bot Arena Duel:**
   ```bash
   node arena.js
   ```
-- **复盘对局并生成星级胜率审计报表：**
+- **Replay Audit & Star-Bracketed Win Rate Report:**
   ```bash
   GIO_ME=your_bot_name node ver_report.js protodump_by_ver/v55
   ```
-- **将军失守专项审计：**
+- **General Defense Fall Audit:**
   ```bash
   node cap_audit.js protodump_ladder
   ```
 
 ---
 
-## 📜 许可证
+## 📜 License
 
-本项目遵循 [MIT License](LICENSE) 开源许可证。
+Released under the [MIT License](LICENSE).
